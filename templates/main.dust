@@ -1,0 +1,40 @@
+
+{#background}
+  {?color}
+    let fillColor = UIColor({@swiftColor}{color}{/swiftColor}){~n}
+    fillColor.setFill(){~n}{~n}
+  {/color}
+{/background}
+
+{#paths}
+  {@if cond="{paths.length} == 1 && {paths[0].length} == 1"}
+    {#.}
+      {?rect}
+        let {name} = UIBezierPath(rect: CGRect(
+        x: {ellipse[0]}, y: {ellipse[1]}, width: {ellipse[2]}, height: {ellipse[3]})){~n}
+      {/rect}
+
+      {?ellipse}
+        let {name} = UIBezierPath(ovalInRect: CGRect(
+        x: {ellipse[0]}, y: {ellipse[1]}, width: {ellipse[2]}, height: {ellipse[3]})){~n}
+      {/ellipse}
+    {/.}
+  {:else}
+    let {name} = UIBezierPath(){~n}{~n}
+
+    {#.}{!path components !}
+      {?move}
+        {name}.moveToPoint(CGPoint(x: {move[0]}, y: {move[1]})){~n}{~n}
+      {/move}
+
+      {?line}
+        {name}.addLineToPoint(CGPoint(x: {line[0]}, y: {line[1]})){~n}
+      {/line}
+    {/.}
+    {~n}
+    {name}.closePath(){~n}
+  {/if}
+  {?background.color}
+    {name}.fill(){~n}
+  {/background.color}
+{/paths}
