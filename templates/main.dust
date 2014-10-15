@@ -11,7 +11,7 @@
     {#.}
       {?rect}
         let {name} = UIBezierPath(rect: CGRect(
-        x: {ellipse[0]}, y: {ellipse[1]}, width: {ellipse[2]}, height: {ellipse[3]})){~n}
+        x: {rect[0]}, y: {rect[1]}, width: {rect[2]}, height: {rect[3]})){~n}
       {/rect}
 
       {?ellipse}
